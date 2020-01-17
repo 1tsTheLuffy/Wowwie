@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private float xAxis;
-    private bool isGrounded;
+    [SerializeField] int randomJumpValue;
+    [SerializeField] int randomMovementValue;
+    [SerializeField] private bool isGrounded;
     [SerializeField] private bool isOnWall;
     private bool isRight;
     private int i = 1;
@@ -17,20 +19,33 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float wallPointRadius;
     [SerializeField] float wallSlidingForce = 3;
     [SerializeField] float wallJumpForce;
+    [SerializeField] float timer;
+    [SerializeField] float timeBtwShoot;
+    [SerializeField] float time = 10f;
 
     [SerializeField] Vector2 wallJumpDirection;
 
+    [SerializeField] GameObject Bullet;
+
     [SerializeField] Transform jumpPoint;
     [SerializeField] Transform wallPoint;
+    [SerializeField] Transform shootPoint;
 
     [SerializeField] LayerMask Ground;
     [SerializeField] LayerMask Wall;
 
     Rigidbody2D rb;
+    Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
+        randomJumpValue = Random.Range(1, 15);
+        randomMovementValue = Random.Range(1, 5);
+
+        timer = timeBtwShoot;
     }
 
     private void Update()
@@ -38,6 +53,27 @@ public class PlayerController : MonoBehaviour
         xAxis = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(jumpPoint.position, jumpPointRadius, Ground);
         isOnWall = Physics2D.OverlapCircle(wallPoint.position, wallPointRadius, Wall);
+
+        if(randomMovementValue >= 1 && randomMovementValue <= 3)
+        {
+            movementSpeed = 400f;
+        }else if(randomMovementValue >= 4 && randomMovementValue <= 5)
+        {
+            movementSpeed = 1000f;
+        }
+
+        if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            randomMovementValue = Random.Range(1, 5);
+        }
+
+        if(xAxis == 0)
+        {
+            animator.SetBool("isRunning", false);
+        }else
+        {
+            animator.SetBool("isRunning", true);
+        }
 
         if (xAxis < 0 && !isRight)
         {
@@ -52,21 +88,34 @@ public class PlayerController : MonoBehaviour
 
         if(isOnWall)
         {
+            animator.SetBool("isSliding", true);
             if (rb.velocity.y < -wallSlidingForce)
             {
+                
                 rb.velocity = new Vector2(rb.velocity.x, -wallSlidingForce);
             }
         }
+        else
+        {
+            animator.SetBool("isSliding", false);
+        }
 
-        //if(isOnWall)
-        //{
-        //    if(Input.GetKey(KeyCode.UpArrow))
-        //    {
-        //        rb.velocity = new Vector2(rb.velocity.x, wallSlidingForce * 1);
-        //    }
-        //}
+        //For Shooting..
 
-        
+        if(Input.GetKeyDown(KeyCode.X) && timer <= 0)
+        {
+            Instantiate(Bullet, shootPoint.position, shootPoint.rotation);
+            timer = timeBtwShoot;
+        }else
+        {
+            timer -= Time.deltaTime;
+        }
+
+        if(time <= 0f)
+        {
+            time = 0f;
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -74,15 +123,34 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector2(xAxis * movementSpeed * Time.deltaTime, rb.velocity.y);
 
+        if(randomJumpValue >= 1 && randomJumpValue <= 6)
+        {
+            jumpForce = 800f;
+        }
+        else if(randomJumpValue >= 7 && randomJumpValue <= 10)
+        {
+            jumpForce = 1100;
+        }else if(randomJumpValue >= 11 && randomJumpValue <= 15)
+        {
+            jumpForce = 300;
+        }
+
         if (isGrounded && Input.GetKeyDown(KeyCode.Z))
         {
             Jump();
+            animator.SetBool("isJumping", true);
+            randomJumpValue = Random.Range(1, 15);
+        }else
+        {
+            animator.SetBool("isJumping", false);
         }
 
         if (isOnWall && Input.GetKeyDown(KeyCode.Z))
         {
             WallJump();
         }
+
+        time -= Time.deltaTime;
     }
 
     void Jump()
