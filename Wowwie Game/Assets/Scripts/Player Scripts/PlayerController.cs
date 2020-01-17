@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Vector2 wallJumpDirection;
 
+    [SerializeField] TextMeshProUGUI timerText;
+
     [SerializeField] GameObject Bullet;
 
     [SerializeField] Transform jumpPoint;
@@ -46,6 +49,8 @@ public class PlayerController : MonoBehaviour
         randomMovementValue = Random.Range(1, 5);
 
         timer = timeBtwShoot;
+
+        timerText.text = time.ToString();
     }
 
     private void Update()
@@ -150,6 +155,7 @@ public class PlayerController : MonoBehaviour
             WallJump();
         }
 
+        timerText.text = time.ToString("0");
         time -= Time.deltaTime;
     }
 
