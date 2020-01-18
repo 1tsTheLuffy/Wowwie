@@ -197,6 +197,12 @@ public class PlayerController : MonoBehaviour
         {
             health -= 1;
         }
+
+        if(collision.CompareTag("Spider"))
+        {
+            health -= 5;
+            Destroy(collision.transform.gameObject);
+        }
     }
 
     void Jump()

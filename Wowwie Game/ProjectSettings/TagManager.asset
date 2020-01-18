@@ -10,6 +10,7 @@ TagManager:
   - Monster
   - FireBall
   - TimePotion
+  - Spider
   layers:
   - Default
   - TransparentFX

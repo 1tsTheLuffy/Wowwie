@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider : MonoBehaviour
+public class Bat : MonoBehaviour
 {
     private bool isRight;
-    [SerializeField] float movementSpeed;
 
-    [SerializeField] GameObject bloodParticle;
+    [SerializeField] float movementSpeed;
 
     [SerializeField] Transform[] movePoints;
 
@@ -18,15 +17,18 @@ public class Spider : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+
     private void Update()
     {
         if (!isRight)
         {
             transform.Translate(movementSpeed * Time.deltaTime, 0, 0);
+            transform.localScale = new Vector2(-1, 1);
         }
         else
         {
             transform.Translate(-movementSpeed * Time.deltaTime, 0, 0);
+            transform.localScale = new Vector2(1, 1);
         }
 
         if (Vector2.Distance(transform.position, movePoints[1].position) < 1f)
@@ -37,11 +39,5 @@ public class Spider : MonoBehaviour
         {
             isRight = false;
         }
-    }
-
-    private void OnDestroy()
-    {
-        GameObject d = Instantiate(bloodParticle, transform.position, Quaternion.identity);
-        Destroy(d, 5f);
     }
 }
