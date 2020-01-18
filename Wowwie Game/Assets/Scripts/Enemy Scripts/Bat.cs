@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class Bat : MonoBehaviour
 {
-    private bool isRight;
+    public int i;
+    public bool isRight;
 
     [SerializeField] float movementSpeed;
+    [SerializeField] float timer;
+    [SerializeField] float timeBtwSpawn;
+
+    [SerializeField] GameObject destroyParticle;
+    [SerializeField] GameObject[] powerUps;
+    [SerializeField] GameObject fireBall;
 
     [SerializeField] Transform[] movePoints;
+    [SerializeField] Transform rayPoint;
+
+    [SerializeField] LayerMask Player;
 
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        i = Random.Range(0, powerUps.Length);
     }
 
 
@@ -39,5 +51,50 @@ public class Bat : MonoBehaviour
         {
             isRight = false;
         }
+
+        Debug.Log(isRight);
+        // Raycast..
+
+        RaycastHit2D rayLeft = Physics2D.Raycast(rayPoint.position, Vector2.left, 5, Player);
+        RaycastHit2D rayRight = Physics2D.Raycast(rayPoint.position, Vector2.right, 5, Player);
+        if(rayLeft.collider != null)
+        {
+            if(rayLeft.collider.transform.CompareTag("Player") && timer <= 0 && isRight == true)
+            {
+                Instantiate(fireBall, rayPoint.position, rayPoint.rotation);
+                //Debug.Log(rayLeft.transform.name);
+                timer = timeBtwSpawn;
+            }else
+            {
+                timer -= Time.deltaTime;
+            }
+        }else if(rayRight.collider != null)
+        {
+            if(rayRight.collider.transform.CompareTag("Player") && timer <= 0 && isRight == false)
+            {
+                Instantiate(fireBall, rayPoint.position, rayPoint.rotation);
+                //Debug.Log(rayLeft.transform.name);
+                timer = timeBtwSpawn;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("BulletTag"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        GameObject d = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        Instantiate(powerUps[i], transform.position, Quaternion.identity);
+        Destroy(d, 5f);
     }
 }

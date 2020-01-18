@@ -12,6 +12,8 @@ TagManager:
   - TimePotion
   - Spider
   - Lava
+  - Pighead
+  - Bat
   layers:
   - Default
   - TransparentFX

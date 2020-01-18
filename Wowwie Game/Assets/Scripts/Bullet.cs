@@ -24,15 +24,9 @@ public class Bullet : MonoBehaviour
         if(i == 1)
         {
             cc.enabled = true;
-            Debug.Log(i);
         }else if(i == 2)
         {
             cc.enabled = false;
-            Debug.Log(i);
-        }
-        else if(i == 3)
-        {
-            StartCoroutine(enumerator());
         }
     }
 
@@ -61,13 +55,5 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    IEnumerator enumerator()
-    {
-        yield return new WaitForSeconds(.2f);
-        rb.gravityScale = 5f;
-        yield return new WaitForSeconds(.2f);
-        Destroy(gameObject);
     }
 }
