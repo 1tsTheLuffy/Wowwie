@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public int i;
     [SerializeField] float speed;
     [SerializeField] float destroyTime;
 
@@ -14,6 +15,21 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CapsuleCollider2D>();
+
+        i = Random.Range(1, 4);
+        if(i == 1)
+        {
+            cc.enabled = true;
+            Debug.Log(i);
+        }else if(i == 2)
+        {
+            cc.enabled = false;
+            Debug.Log(i);
+        }
+        else if(i == 3)
+        {
+            StartCoroutine(enumerator());
+        }
     }
 
     private void Update()
@@ -36,9 +52,17 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.CompareTag("Hog"))
+        if(collision.transform.CompareTag("Hog") || collision.transform.CompareTag("Monster"))
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator enumerator()
+    {
+        yield return new WaitForSeconds(.2f);
+        rb.gravityScale = 5f;
+        yield return new WaitForSeconds(.2f);
+        Destroy(gameObject);
     }
 }

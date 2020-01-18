@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    public int health;
     [SerializeField] float minDistance;
     [SerializeField] float timer;
     [SerializeField] float timeBtwSpawn;
@@ -34,6 +35,19 @@ public class Monster : MonoBehaviour
         }else
         {
             timer -= Time.deltaTime;
+        }
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.CompareTag("BulletTag"))
+        {
+            health -= 1;
         }
     }
 }
