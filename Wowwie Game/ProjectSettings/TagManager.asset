@@ -8,6 +8,8 @@ TagManager:
   - Hog
   - BulletTag
   - Monster
+  - FireBall
+  - TimePotion
   layers:
   - Default
   - TransparentFX

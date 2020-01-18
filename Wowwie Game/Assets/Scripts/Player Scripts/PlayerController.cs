@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
             movementSpeed = 250;
         }else if(randomMovementValue >= 4 && randomMovementValue <= 5)
         {
-            movementSpeed = 750;
+            movementSpeed = 450;
         }
 
         if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
             jumpForce = 1100;
         }else if(randomJumpValue >= 11 && randomJumpValue <= 15)
         {
-            jumpForce = 300;
+            jumpForce = 500;
         }
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Z))
@@ -184,6 +184,14 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(addForce);
             }
             health--;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("FireBall"))
+        {
+            health -= 1;
         }
     }
 
