@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject timeUpPanel;
+    [SerializeField] GameObject destoryParticle;
 
     [SerializeField] Transform[] transportPoints;
     [SerializeField] Transform jumpPoint;
@@ -270,6 +271,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         health -= 1;
         yield return new WaitForSeconds(1f);
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(destoryParticle, transform.position, Quaternion.identity);
     }
 
     private void OnDrawGizmosSelected()
