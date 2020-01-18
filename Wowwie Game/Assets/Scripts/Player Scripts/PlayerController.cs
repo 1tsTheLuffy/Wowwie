@@ -6,6 +6,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     private float xAxis;
+    public int j;
     [SerializeField] int randomJumpValue;
     [SerializeField] int randomMovementValue;
     [SerializeField] private bool isGrounded;
@@ -34,12 +35,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject timeUpPanel;
 
+    [SerializeField] Transform[] transportPoints;
     [SerializeField] Transform jumpPoint;
     [SerializeField] Transform wallPoint;
     [SerializeField] Transform shootPoint;
 
     [SerializeField] LayerMask Ground;
     [SerializeField] LayerMask Wall;
+
+    Spider spider;
 
     Rigidbody2D rb;
     Animator animator;
@@ -48,6 +52,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        spider = GameObject.FindGameObjectWithTag("Spider").GetComponent<Spider>();
 
         randomJumpValue = Random.Range(1, 15);
         randomMovementValue = Random.Range(1, 5);
@@ -198,10 +204,32 @@ public class PlayerController : MonoBehaviour
             health -= 1;
         }
 
-        if(collision.CompareTag("Spider"))
+        if(collision.CompareTag("Spider") && spider.i == 1)
         {
             health -= 5;
             Destroy(collision.transform.gameObject);
+        }else if(collision.CompareTag("Spider") && spider.i == 2)
+        {
+            j = Random.Range(0, transportPoints.Length);
+            transform.position = transportPoints[j].position;
+        }else if(collision.CompareTag("Spider") && spider.i == 3)
+        {
+            health -= 5;
+            j = Random.Range(0, transportPoints.Length);
+            transform.position = transportPoints[j].position;
+        }
+
+        if(collision.CompareTag("Lava"))
+        {
+            health -= 1;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Lava"))
+        {
+            StartCoroutine(damage());
         }
     }
 
@@ -230,6 +258,13 @@ public class PlayerController : MonoBehaviour
                 wallJumpDirection.y * wallJumpForce * Time.fixedDeltaTime);
             rb.AddForce(addForce, ForceMode2D.Impulse);
         }
+    }
+
+    IEnumerator damage()
+    {
+        yield return new WaitForSeconds(1f);
+        health -= 1;
+        yield return new WaitForSeconds(1f);
     }
 
     private void OnDrawGizmosSelected()

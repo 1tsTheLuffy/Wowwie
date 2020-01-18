@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spider : MonoBehaviour
 {
     private bool isRight;
+    public int i;
     [SerializeField] float movementSpeed;
 
     [SerializeField] GameObject bloodParticle;
@@ -16,6 +17,8 @@ public class Spider : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        i = Random.Range(1, 4);
     }
 
     private void Update()

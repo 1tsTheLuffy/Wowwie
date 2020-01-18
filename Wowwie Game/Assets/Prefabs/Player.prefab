@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c06ec829b983644bf795e0de5d3fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  j: 0
   randomJumpValue: 0
   randomMovementValue: 0
   isGrounded: 0
@@ -382,11 +383,13 @@ MonoBehaviour:
   timeBtwShoot: 0
   time: 50
   hogHitForce: 400
-  health: 20
+  health: 10000
   wallJumpDirection: {x: 40, y: 1}
   timerText: {fileID: 0}
   healthText: {fileID: 0}
   Bullet: {fileID: 2273945970340470366, guid: 164bfbdac78e4da488abfd45218072e8, type: 3}
+  timeUpPanel: {fileID: 0}
+  transportPoints: []
   jumpPoint: {fileID: 6104597105742665095}
   wallPoint: {fileID: 6104597105318290516}
   shootPoint: {fileID: 6104597105083147557}

@@ -11,6 +11,7 @@ TagManager:
   - FireBall
   - TimePotion
   - Spider
+  - Lava
   layers:
   - Default
   - TransparentFX

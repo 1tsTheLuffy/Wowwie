@@ -26,6 +26,10 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
+        if(Player == null)
+        {
+            return;
+        }
         float distance = Vector2.Distance(transform.position, Player.position);
 
         if(distance <= minDistance && timer <= 0)

@@ -29,6 +29,12 @@ public class Hog : MonoBehaviour
 
     private void Update()
     {
+        if(Player == null)
+        {
+            return;
+        }
+
+
         RaycastHit2D raycastRight = Physics2D.Raycast(transform.position, Vector2.right, rayDistance, PlayerMask);
         RaycastHit2D raycastLeft = Physics2D.Raycast(transform.position, -Vector2.right, rayDistance, PlayerMask);
         if (raycastRight.collider != null)
