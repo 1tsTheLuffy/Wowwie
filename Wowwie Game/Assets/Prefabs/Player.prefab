@@ -380,7 +380,7 @@ MonoBehaviour:
   wallJumpForce: 20
   timer: 0
   timeBtwShoot: 0
-  time: 600
+  time: 50
   hogHitForce: 400
   health: 20
   wallJumpDirection: {x: 40, y: 1}

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4120219476612322716}
   - component: {fileID: 2219218795778942063}
   - component: {fileID: 8616237361344339489}
+  - component: {fileID: 5115208548920227375}
+  - component: {fileID: 9108056870339416371}
   m_Layer: 0
   m_Name: Time Potion
   m_TagString: TimePotion
@@ -101,6 +103,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5115208548920227375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4022475807633708327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcae20eda59a5d45ad37edd246cf4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  randomTimeValue: 0
+--- !u!58 &9108056870339416371
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4022475807633708327}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.041943826}
+  serializedVersion: 2
+  m_Radius: 0.4580562
 --- !u!1 &5201137149916415640
 GameObject:
   m_ObjectHideFlags: 0

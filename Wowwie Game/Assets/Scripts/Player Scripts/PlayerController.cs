@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float wallJumpForce;
     [SerializeField] float timer;
     [SerializeField] float timeBtwShoot;
-    [SerializeField] float time = 10f;
+    public float time = 10f;
     [SerializeField] float hogHitForce;
     public int health;
 
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
 
     [SerializeField] GameObject Bullet;
+    [SerializeField] GameObject timeUpPanel;
 
     [SerializeField] Transform jumpPoint;
     [SerializeField] Transform wallPoint;
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
 
         timerText.text = time.ToString();
         healthText.text = health.ToString();
+
+        timeUpPanel.SetActive(false);
     }
 
     private void Update()
@@ -123,6 +126,7 @@ public class PlayerController : MonoBehaviour
         if(time <= 0f)
         {
             time = 0f;
+            timeUpPanel.SetActive(true);
             Destroy(gameObject);
         }
 
