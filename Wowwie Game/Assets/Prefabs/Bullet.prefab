@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 8479546484514482025}
   - component: {fileID: -5698337912186175502}
   - component: {fileID: 2926127206988305303}
-  m_Layer: 0
+  - component: {fileID: 1624196321949515422}
+  m_Layer: 8
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: BulletTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2273945970340470366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.376, y: -3.657, z: 0}
-  m_LocalScale: {x: 0.15786201, y: 0.15786201, z: 0.15786201}
+  m_LocalPosition: {x: -1.8809, y: -3.5681, z: 0}
+  m_LocalScale: {x: 0.28033, y: 0.24784294, z: 0.15786201}
   m_Children:
   - {fileID: 4665349234899490849}
   m_Father: {fileID: 0}
@@ -95,7 +96,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00000011830863, y: 0.0026560824}
@@ -113,14 +114,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100000
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &-5698337912186175502
 MonoBehaviour:
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  destroyTime: 10
 --- !u!96 &2926127206988305303
 TrailRenderer:
   serializedVersion: 2
@@ -240,6 +242,22 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!70 &1624196321949515422
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2273945970340470366}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00000011830863, y: 0.0026560824}
+  m_Size: {x: 0.7855784, y: 0.29429355}
+  m_Direction: 1
 --- !u!1 &3815560470715277698
 GameObject:
   m_ObjectHideFlags: 0

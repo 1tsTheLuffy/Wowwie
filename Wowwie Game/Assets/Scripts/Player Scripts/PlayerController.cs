@@ -23,10 +23,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] float timeBtwShoot;
     [SerializeField] float time = 10f;
+    [SerializeField] float hogHitForce;
+    public int health;
 
     [SerializeField] Vector2 wallJumpDirection;
 
     [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] TextMeshProUGUI healthText;
 
     [SerializeField] GameObject Bullet;
 
@@ -51,6 +54,7 @@ public class PlayerController : MonoBehaviour
         timer = timeBtwShoot;
 
         timerText.text = time.ToString();
+        healthText.text = health.ToString();
     }
 
     private void Update()
@@ -61,10 +65,10 @@ public class PlayerController : MonoBehaviour
 
         if(randomMovementValue >= 1 && randomMovementValue <= 3)
         {
-            movementSpeed = 400f;
+            movementSpeed = 250;
         }else if(randomMovementValue >= 4 && randomMovementValue <= 5)
         {
-            movementSpeed = 1000f;
+            movementSpeed = 750;
         }
 
         if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
@@ -121,6 +125,12 @@ public class PlayerController : MonoBehaviour
             time = 0f;
             Destroy(gameObject);
         }
+
+        healthText.text = health.ToString();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -157,6 +167,24 @@ public class PlayerController : MonoBehaviour
 
         timerText.text = time.ToString("0");
         time -= Time.deltaTime;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Hog"))
+        {
+            if (isRight)
+            {
+                Vector2 addForce = new Vector2(2 * hogHitForce, 2 * hogHitForce);
+                rb.AddForce(addForce);
+            }
+            else if (!isRight)
+            {
+                Vector2 addForce = new Vector2(-2 * hogHitForce, 2 * hogHitForce);
+                rb.AddForce(addForce);
+            }
+            health--;
+        }
     }
 
     void Jump()
