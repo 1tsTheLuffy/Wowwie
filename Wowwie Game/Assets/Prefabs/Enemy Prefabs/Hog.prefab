@@ -229,11 +229,13 @@ MonoBehaviour:
   rayDistance: 7
   destroyParticle: {fileID: 5237952965828710628, guid: 18d5499781f57ef4b9d706604248c6a2,
     type: 3}
-  powerUps: []
+  powerUps:
+  - {fileID: 7746487196319444410, guid: 104eb0e761deb9341a0e977a3b09a483, type: 3}
+  - {fileID: 4022475807633708327, guid: 160e32284f967e845b98971bec916366, type: 3}
   health: 2
   movePoints:
-  - {fileID: 7746487196319444390, guid: 104eb0e761deb9341a0e977a3b09a483, type: 3}
-  - {fileID: 4120219476612322716, guid: 160e32284f967e845b98971bec916366, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   PlayerMask:
     serializedVersion: 2
     m_Bits: 1024

@@ -7,6 +7,7 @@ public class Pighead : MonoBehaviour
     private int i;
     private bool isGrounded;
     [SerializeField] float jumpForce;
+    [SerializeField] float radius;
 
     [SerializeField] GameObject destroyParticle;
     [SerializeField] GameObject[] powerUps;
@@ -28,13 +29,13 @@ public class Pighead : MonoBehaviour
         i = Random.Range(0, powerUps.Length);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(transform.position, .5f, Ground);
+        isGrounded = Physics2D.OverlapCircle(transform.position, radius, Ground);
 
         if(isGrounded)
         {
-            rb.velocity = Vector2.up * jumpForce * Time.deltaTime;
+            rb.velocity = Vector2.up * jumpForce * Time.fixedDeltaTime;
         }
     }
 
@@ -43,5 +44,10 @@ public class Pighead : MonoBehaviour
         Instantiate(powerUps[i], transform.position, Quaternion.identity);
         GameObject d = Instantiate(destroyParticle, transform.position, Quaternion.identity);
         Destroy(d, 5f);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

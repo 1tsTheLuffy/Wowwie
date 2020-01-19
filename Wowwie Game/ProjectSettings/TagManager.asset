@@ -16,6 +16,7 @@ TagManager:
   - Bat
   - Diamond
   - DestroyTile
+  - Win
   layers:
   - Default
   - TransparentFX

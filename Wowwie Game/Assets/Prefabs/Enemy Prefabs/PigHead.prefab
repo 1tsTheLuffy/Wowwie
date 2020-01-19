@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 500
+  radius: 0.22
   destroyParticle: {fileID: 5237952965828710628, guid: 160924adb38727f44a405c0487b9f1f9,
     type: 3}
   powerUps:
