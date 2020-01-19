@@ -15,7 +15,7 @@ public class TimePotion : MonoBehaviour
 
 
         i = Random.Range(1, 3);
-        randomTimeValue = Random.Range(20, 80);
+        randomTimeValue = Random.Range(10, 30);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -42,6 +42,14 @@ public class Spider : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("BulletTag"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDestroy()
     {
         GameObject d = Instantiate(bloodParticle, transform.position, Quaternion.identity);

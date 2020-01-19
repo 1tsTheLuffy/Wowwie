@@ -17,6 +17,7 @@ TagManager:
   - Diamond
   - DestroyTile
   - Win
+  - WinningGround
   layers:
   - Default
   - TransparentFX

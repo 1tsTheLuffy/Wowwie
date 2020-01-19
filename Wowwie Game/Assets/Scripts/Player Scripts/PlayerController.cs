@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private float xAxis;
     public int j;
     [SerializeField] int randomJumpValue;
-    [SerializeField] int randomMovementValue;
     [SerializeField] private bool isGrounded;
     [SerializeField] private bool isOnWall;
     private bool isRight;
@@ -71,7 +70,6 @@ public class PlayerController : MonoBehaviour
         spider = GameObject.FindGameObjectWithTag("Spider").GetComponent<Spider>();
 
         randomJumpValue = Random.Range(1, 15);
-        randomMovementValue = Random.Range(1, 5);
 
         if (virtaulCamera != null)
         {
@@ -91,19 +89,6 @@ public class PlayerController : MonoBehaviour
         xAxis = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(jumpPoint.position, jumpPointRadius, Ground);
         isOnWall = Physics2D.OverlapCircle(wallPoint.position, wallPointRadius, Wall);
-
-        if(randomMovementValue >= 1 && randomMovementValue <= 3)
-        {
-            movementSpeed = 250;
-        }else if(randomMovementValue >= 4 && randomMovementValue <= 5)
-        {
-            movementSpeed = 450;
-        }
-
-        if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            randomMovementValue = Random.Range(1, 5);
-        }
 
         if(xAxis == 0)
         {
@@ -163,6 +148,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
             SceneManager.LoadScene(02);
+        }
+
+        if(health < 0 )
+        {
+            health = 0;
         }
 
         //if(transform.position.y <= -45f)
@@ -243,18 +233,23 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if(collision.transform.CompareTag("WinningGround"))
+        {
+            SceneManager.LoadScene(03);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("FireBall"))
         {
-            health -= 1;
+            health -= 2;
         }
 
         if(collision.CompareTag("Spider") && spider.i == 1)
         {
-            health -= 5;
+            health -= 1;
             Destroy(collision.transform.gameObject);
         }else if(collision.CompareTag("Spider") && spider.i == 2)
         {
@@ -262,14 +257,14 @@ public class PlayerController : MonoBehaviour
             transform.position = transportPoints[j].position;
         }else if(collision.CompareTag("Spider") && spider.i == 3)
         {
-            health -= 5;
+            health -= 2;
             j = Random.Range(0, transportPoints.Length);
             transform.position = transportPoints[j].position;
         }
 
         if(collision.CompareTag("Lava"))
         {
-            health -= 1;
+            health -= 5;
         }
 
         if(collision.CompareTag("Diamond"))
@@ -278,14 +273,6 @@ public class PlayerController : MonoBehaviour
             health += 5;
             time += 60;
             Diamond++;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Lava"))
-        {
-            StartCoroutine(damage());
         }
     }
 
