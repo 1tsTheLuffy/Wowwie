@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,7 +37,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI diamondText;
 
     [SerializeField] GameObject Bullet;
-    [SerializeField] GameObject timeUpPanel;
     [SerializeField] GameObject destoryParticle;
     [SerializeField] GameObject Door;
 
@@ -82,8 +82,6 @@ public class PlayerController : MonoBehaviour
         timerText.text = time.ToString();
         healthText.text = health.ToString();
         diamondText.text = Diamond.ToString();
-
-        timeUpPanel.SetActive(false);
     }
 
     private void Update()
@@ -154,7 +152,6 @@ public class PlayerController : MonoBehaviour
         if(time <= 0f)
         {
             time = 0f;
-            timeUpPanel.SetActive(true);
             Destroy(gameObject);
         }
 
