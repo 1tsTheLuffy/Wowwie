@@ -9,10 +9,7 @@ public class HealthPoiton : MonoBehaviour
 
     private void Start()
     {
-        if(pc == null)
-        {
-            return;
-        }
+        
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
 
