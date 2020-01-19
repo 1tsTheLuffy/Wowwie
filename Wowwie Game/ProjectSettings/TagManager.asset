@@ -14,6 +14,7 @@ TagManager:
   - Lava
   - Pighead
   - Bat
+  - Diamond
   layers:
   - Default
   - TransparentFX

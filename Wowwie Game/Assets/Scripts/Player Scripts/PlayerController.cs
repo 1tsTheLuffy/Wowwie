@@ -32,10 +32,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] TextMeshProUGUI diamondText;
 
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject timeUpPanel;
     [SerializeField] GameObject destoryParticle;
+    [SerializeField] GameObject Door;
 
     [SerializeField] Transform[] transportPoints;
     [SerializeField] Transform jumpPoint;
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
         timerText.text = time.ToString();
         healthText.text = health.ToString();
+        diamondText.text = Diamond.ToString();
 
         timeUpPanel.SetActive(false);
     }
@@ -149,6 +152,13 @@ public class PlayerController : MonoBehaviour
         //{
         //    Destroy(gameObject);
         //}
+
+        diamondText.text = Diamond.ToString();
+
+        if(Diamond == 4)
+        {
+            Destroy(Door);
+        }
     }
 
     private void FixedUpdate()
@@ -238,7 +248,13 @@ public class PlayerController : MonoBehaviour
             health -= 1;
         }
 
-        
+        if(collision.CompareTag("Diamond"))
+        {
+            Destroy(collision.transform.gameObject);
+            health += 5;
+            time += 60;
+            Diamond++;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
