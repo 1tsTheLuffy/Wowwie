@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     public int health;
     public int Diamond;
 
+
+
     [SerializeField] Vector2 wallJumpDirection;
 
     [SerializeField] TextMeshProUGUI timerText;
@@ -335,6 +337,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         health -= 1;
         yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator Load()
+    {
+        yield return new WaitForSeconds(.2f);
+        SceneManager.LoadScene(02);
     }
 
     private void OnDestroy()

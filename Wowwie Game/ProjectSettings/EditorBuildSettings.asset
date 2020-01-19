@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Time Up Scene.unity
     guid: ff15b757180df9b4dbab4566b5b86fd1
+  - enabled: 1
+    path: Assets/Scenes/Bug Scene.unity
+    guid: 89cb76b995a594d4699596c36024805b
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Scene.unity
+    guid: b67c9486170617142855617dc4f77418
   m_configObjects: {}
