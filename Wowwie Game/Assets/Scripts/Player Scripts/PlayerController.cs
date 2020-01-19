@@ -153,6 +153,7 @@ public class PlayerController : MonoBehaviour
         {
             time = 0f;
             Destroy(gameObject);
+            SceneManager.LoadScene(04);
         }
 
         healthText.text = health.ToString();
