@@ -15,6 +15,7 @@ TagManager:
   - Pighead
   - Bat
   - Diamond
+  - DestroyTile
   layers:
   - Default
   - TransparentFX

@@ -49,11 +49,13 @@ public class Bullet : MonoBehaviour
     //    }
     //}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.CompareTag("Hog") || collision.transform.CompareTag("Monster"))
+        if(collision.CompareTag("Hog")  || collision.CompareTag("Pighead") || 
+            collision.CompareTag("Spider") || collision.CompareTag("Bat") || collision.CompareTag("Monster"))
         {
             Destroy(gameObject);
+            pc.health -= 1;
         }
     }
 }

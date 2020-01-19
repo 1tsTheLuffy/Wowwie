@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3089646566272365571}
   - component: {fileID: 3089646566272365570}
   - component: {fileID: 3089646566272365599}
+  - component: {fileID: 3661042373262756615}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Bat
@@ -202,3 +203,19 @@ MonoBehaviour:
   Player:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!58 &3661042373262756615
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3089646566272365569}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.037686106, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.24016468

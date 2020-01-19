@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    private int i;
     public int health;
     [SerializeField] float minDistance;
     [SerializeField] float timer;
     [SerializeField] float timeBtwSpawn;
 
     [SerializeField] GameObject fireBall;
+    [SerializeField] GameObject[] powerUps;
+    [SerializeField] GameObject destroyParticle;
 
     [SerializeField] Transform spawnPoint;
     private Transform Player;
@@ -22,6 +25,8 @@ public class Monster : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player").transform;
 
         timer = timeBtwSpawn;
+
+        i = Random.Range(0, powerUps.Length);
     }
 
     private void Update()
@@ -53,5 +58,12 @@ public class Monster : MonoBehaviour
         {
             health -= 1;
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(powerUps[i], transform.position, Quaternion.identity);
+        GameObject d = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        Destroy(d, 5f);
     }
 }

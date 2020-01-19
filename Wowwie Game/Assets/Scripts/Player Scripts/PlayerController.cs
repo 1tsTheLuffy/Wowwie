@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -47,6 +48,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask Ground;
     [SerializeField] LayerMask Wall;
 
+    [SerializeField] CinemachineVirtualCamera virtaulCamera;
+    private CinemachineBasicMultiChannelPerlin virtualNoiseCamera;
+
+    [SerializeField] float elapsedTime;
+    [SerializeField] float shakeDuration;
+    [SerializeField] float shakeAmplitude;
+    [SerializeField] float shakeFrequency;
+
     Spider spider;
 
     Rigidbody2D rb;
@@ -61,6 +70,12 @@ public class PlayerController : MonoBehaviour
 
         randomJumpValue = Random.Range(1, 15);
         randomMovementValue = Random.Range(1, 5);
+
+        if (virtaulCamera != null)
+        {
+            virtualNoiseCamera = virtaulCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+        }
+
 
         timer = timeBtwShoot;
 
@@ -128,6 +143,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.X) && timer <= 0)
         {
             Instantiate(Bullet, shootPoint.position, shootPoint.rotation);
+            elapsedTime = shakeDuration;
             FindObjectOfType<AudioManager>().Play("Shoot");
             timer = timeBtwShoot;
         }else
@@ -159,6 +175,8 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(Door);
         }
+
+        CameraShake();
     }
 
     private void FixedUpdate()
@@ -218,6 +236,11 @@ public class PlayerController : MonoBehaviour
         if(collision.transform.CompareTag("Pighead"))
         {
             health = 0;
+        }
+
+        if(collision.transform.CompareTag("DestroyTile"))
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -291,6 +314,23 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(addForce, ForceMode2D.Impulse);
         }
     }
+
+    private void CameraShake()
+    {
+        if (elapsedTime > 0)
+        {
+            virtualNoiseCamera.m_AmplitudeGain = shakeAmplitude;
+            virtualNoiseCamera.m_FrequencyGain = shakeFrequency;
+            elapsedTime -= Time.deltaTime;
+        }
+        else
+        {
+            elapsedTime = 0;
+            virtualNoiseCamera.m_FrequencyGain = 0;
+            virtualNoiseCamera.m_AmplitudeGain = 0;
+        }
+    }
+
 
     IEnumerator damage()
     {

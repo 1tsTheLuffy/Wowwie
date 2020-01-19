@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 8794689426845429734}
   - component: {fileID: 8794689426845429733}
   - component: {fileID: 8794689426845429732}
+  - component: {fileID: 2049205067868318746}
   m_Layer: 0
   m_Name: PigHead
   m_TagString: Pighead
@@ -204,6 +205,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 500
+  destroyParticle: {fileID: 5237952965828710628, guid: 160924adb38727f44a405c0487b9f1f9,
+    type: 3}
+  powerUps:
+  - {fileID: 7746487196319444410, guid: 104eb0e761deb9341a0e977a3b09a483, type: 3}
+  - {fileID: 4022475807633708327, guid: 160e32284f967e845b98971bec916366, type: 3}
   Ground:
     serializedVersion: 2
     m_Bits: 768
+--- !u!58 &2049205067868318746
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8794689426845429731}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.49999997

@@ -94,7 +94,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6104597104585450064}
-  m_LocalRotation: {x: -0, y: -0, z: -0.70791185, w: 0.70630085}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.177, y: 0.104, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -379,19 +379,24 @@ MonoBehaviour:
   wallPointRadius: 0.11
   wallSlidingForce: 3
   wallJumpForce: 20
-  timer: 0
-  timeBtwShoot: 0
+  timer: 0.5
+  timeBtwShoot: 0.5
   time: 50
   hogHitForce: 400
   health: 20
+  Diamond: 0
   wallJumpDirection: {x: 40, y: 1}
   timerText: {fileID: 0}
   healthText: {fileID: 0}
+  diamondText: {fileID: 0}
   Bullet: {fileID: 2273945970340470366, guid: 164bfbdac78e4da488abfd45218072e8, type: 3}
   timeUpPanel: {fileID: 0}
   destoryParticle: {fileID: 5237952965828710628, guid: 11f9ff84aa0427142b87994bf6d686a9,
     type: 3}
-  transportPoints: []
+  Door: {fileID: 0}
+  transportPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   jumpPoint: {fileID: 6104597105742665095}
   wallPoint: {fileID: 6104597105318290516}
   shootPoint: {fileID: 6104597105083147557}
@@ -401,6 +406,11 @@ MonoBehaviour:
   Wall:
     serializedVersion: 2
     m_Bits: 512
+  virtaulCamera: {fileID: 0}
+  elapsedTime: 0
+  shakeDuration: 0.1
+  shakeAmplitude: 1
+  shakeFrequency: 1
 --- !u!95 &6104597105889793434
 Animator:
   serializedVersion: 3

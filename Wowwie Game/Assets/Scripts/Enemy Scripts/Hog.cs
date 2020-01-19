@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Hog : MonoBehaviour
 {
+    private int i;
     private bool isRight;
     [SerializeField] float runSpeed;
     [SerializeField] float movementSpeed;
     [SerializeField] float rayDistance;
 
     [SerializeField] GameObject destroyParticle;
+    [SerializeField] GameObject[] powerUps;
 
     public int health = 2;
 
@@ -27,6 +29,8 @@ public class Hog : MonoBehaviour
         animator = GetComponent<Animator>();
 
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        i = Random.Range(0, powerUps.Length);
     }
 
     private void Update()
@@ -108,6 +112,7 @@ public class Hog : MonoBehaviour
     private void OnDestroy()
     {
         GameObject d = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        Instantiate(powerUps[i], transform.position, Quaternion.identity);
         Destroy(d, 5f);
     }
 }
