@@ -281,13 +281,13 @@ MonoBehaviour:
   sounds:
   - name: Jump
     Clip: {fileID: 8300000, guid: 7942b5a37690caa4c8c2b335ce392f5b, type: 3}
-    Volume: 1
+    Volume: 0.3
     Pitch: 1
     loop: 0
     audioSource: {fileID: 0}
   - name: Shoot
     Clip: {fileID: 8300000, guid: 01b7106fd0009a94d921055e8776552a, type: 3}
-    Volume: 1
+    Volume: 0.2
     Pitch: 1
     loop: 0
     audioSource: {fileID: 0}
@@ -298,7 +298,7 @@ MonoBehaviour:
     loop: 1
     audioSource: {fileID: 0}
   - name: Theme1
-    Clip: {fileID: 8300000, guid: 5a3dd3ffb72f39848b58240b6eaac7a1, type: 3}
+    Clip: {fileID: 8300000, guid: 7472317eb4312144c95fbbcc033ac302, type: 3}
     Volume: 0.12
     Pitch: 1
     loop: 1
