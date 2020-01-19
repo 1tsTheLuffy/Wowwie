@@ -9,6 +9,8 @@ public class Hog : MonoBehaviour
     [SerializeField] float movementSpeed;
     [SerializeField] float rayDistance;
 
+    [SerializeField] GameObject destroyParticle;
+
     public int health = 2;
 
     Transform Player;
@@ -101,5 +103,11 @@ public class Hog : MonoBehaviour
         Vector2 faceDirection = transform.localScale;
         faceDirection.x *= -1;
         transform.localScale = faceDirection;
+    }
+
+    private void OnDestroy()
+    {
+        GameObject d = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        Destroy(d, 5f);
     }
 }

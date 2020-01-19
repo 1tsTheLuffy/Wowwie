@@ -40,14 +40,14 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector2.right * speed * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-            pc.health -= 1; 
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.CompareTag("Wall"))
+    //    {
+    //        Destroy(gameObject);
+    //        pc.health -= 1; 
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

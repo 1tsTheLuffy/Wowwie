@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public float time = 10f;
     [SerializeField] float hogHitForce;
     public int health;
+    public int Diamond;
 
     [SerializeField] Vector2 wallJumpDirection;
 
@@ -124,6 +125,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.X) && timer <= 0)
         {
             Instantiate(Bullet, shootPoint.position, shootPoint.rotation);
+            FindObjectOfType<AudioManager>().Play("Shoot");
             timer = timeBtwShoot;
         }else
         {
@@ -142,6 +144,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //if(transform.position.y <= -45f)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     private void FixedUpdate()
@@ -163,6 +170,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Z))
         {
+            FindObjectOfType<AudioManager>().Play("Jump");
             Jump();
             animator.SetBool("isJumping", true);
             randomJumpValue = Random.Range(1, 15);
@@ -229,6 +237,8 @@ public class PlayerController : MonoBehaviour
         {
             health -= 1;
         }
+
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
