@@ -9,13 +9,23 @@ public class HealthPoiton : MonoBehaviour
 
     private void Start()
     {
+        if(pc == null)
+        {
+            return;
+        }
         pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
 
         i = Random.Range(1, 3);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(pc == null)
+        {
+            return;
+        }
+
         if(collision.CompareTag("Player") && i == 1)
         {
             Destroy(gameObject);

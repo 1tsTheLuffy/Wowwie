@@ -381,16 +381,16 @@ MonoBehaviour:
   wallJumpForce: 20
   timer: 0.5
   timeBtwShoot: 0.5
-  time: 50
+  time: 120
   hogHitForce: 400
   health: 20
   Diamond: 0
+  timeToSet: 0
   wallJumpDirection: {x: 40, y: 1}
   timerText: {fileID: 0}
   healthText: {fileID: 0}
   diamondText: {fileID: 0}
   Bullet: {fileID: 2273945970340470366, guid: 164bfbdac78e4da488abfd45218072e8, type: 3}
-  timeUpPanel: {fileID: 0}
   destoryParticle: {fileID: 5237952965828710628, guid: 11f9ff84aa0427142b87994bf6d686a9,
     type: 3}
   Door: {fileID: 0}

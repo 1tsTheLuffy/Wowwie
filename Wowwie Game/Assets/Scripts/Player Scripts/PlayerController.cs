@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public int health;
     public int Diamond;
 
-
+    [SerializeField] float timeToSet;
 
     [SerializeField] Vector2 wallJumpDirection;
 
@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene(02);
         }
 
         //if(transform.position.y <= -45f)
@@ -235,7 +236,7 @@ public class PlayerController : MonoBehaviour
 
         if(collision.transform.CompareTag("Pighead"))
         {
-            health = 0;
+            health -= 5;
         }
 
         if(collision.transform.CompareTag("DestroyTile"))
@@ -339,15 +340,10 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    IEnumerator Load()
-    {
-        yield return new WaitForSeconds(.2f);
-        SceneManager.LoadScene(02);
-    }
-
     private void OnDestroy()
     {
         Instantiate(destoryParticle, transform.position, Quaternion.identity);
+     
     }
 
     private void OnDrawGizmosSelected()
